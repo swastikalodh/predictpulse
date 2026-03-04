@@ -134,8 +134,8 @@ def rlbl(s):
 
 _CL = dict(paper_bgcolor="rgba(0,0,0,0)",plot_bgcolor="rgba(0,0,0,0)",
            margin=dict(l=0,r=0,t=10,b=0),font=dict(family="Outfit"),
-           xaxis=dict(showgrid=False,color="#5a6478"),
-           yaxis=dict(showgrid=True,gridcolor="rgba(255,255,255,0.05)",color="#5a6478"),
+           xaxis=dict(showgrid=False,color="#a0b0c8"),
+           yaxis=dict(showgrid=True,gridcolor="rgba(255,255,255,0.05)",color="#a0b0c8"),
            legend=dict(bgcolor="rgba(0,0,0,0)",font=dict(color="#8a9ab5",size=11)))
 
 def gauge(score):
@@ -143,7 +143,7 @@ def gauge(score):
     fig = go.Figure(go.Indicator(
         mode="gauge+number", value=round(score*100,1),
         number={"suffix":"%","font":{"size":44,"color":c,"family":"Outfit"}},
-        gauge={"axis":{"range":[0,100],"tickcolor":"#3d4a60","tickfont":{"color":"#5a6478","size":11}},
+        gauge={"axis":{"range":[0,100],"tickcolor":"#8090a8","tickfont":{"color":"#a0b0c8","size":11}},
                "bar":{"color":c,"thickness":0.25},"bgcolor":"rgba(0,0,0,0)","borderwidth":0,
                "steps":[{"range":[0,35],"color":"rgba(50,130,100,0.1)"},
                         {"range":[35,65],"color":"rgba(160,110,30,0.1)"},
@@ -160,31 +160,200 @@ def gauge(score):
 # ══════════════════════════════════════════════════════════════════════════════
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&display=swap');
-html,body,[class*="css"]{font-family:'Outfit',sans-serif!important;color:#ccd4e0;}
-.stApp{background:#0f1117;min-height:100vh;}
-[data-testid="stSidebar"]{background:#0d0f16!important;border-right:1px solid rgba(255,255,255,0.07)!important;}
-[data-testid="stSidebar"] *{color:#ccd4e0!important;}
-.pp-card{background:rgba(255,255,255,0.035);backdrop-filter:blur(20px);border:1px solid rgba(100,116,200,0.18);border-radius:20px;padding:24px;margin-bottom:16px;}
-.pp-kpi{background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.06);border-radius:18px;padding:20px;text-align:center;}
-.pp-kpi-value{font-size:2.2rem;font-weight:900;line-height:1;margin-bottom:4px;}
-.pp-kpi-label{font-size:0.75rem;color:#6b7590;letter-spacing:.5px;text-transform:uppercase;}
-.pp-kpi-sub{font-size:0.7rem;color:#3d4a60;margin-top:4px;}
-.badge-low{background:rgba(50,130,100,.12);color:#3d8c6e;border:1px solid rgba(50,130,100,.25);padding:4px 14px;border-radius:20px;font-weight:700;font-size:.8rem;}
-.badge-moderate{background:rgba(160,110,30,.12);color:#b07d2a;border:1px solid rgba(160,110,30,.25);padding:4px 14px;border-radius:20px;font-weight:700;font-size:.8rem;}
-.badge-high{background:rgba(140,60,60,.12);color:#9b4545;border:1px solid rgba(140,60,60,.25);padding:4px 14px;border-radius:20px;font-weight:700;font-size:.8rem;}
-.pp-title{font-size:1.7rem;font-weight:900;letter-spacing:-.5px;background:linear-gradient(135deg,#ccd4e0,#7b8cde);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px;}
-.pp-subtitle{font-size:.85rem;color:#5a6478;margin-bottom:20px;}
-.stProgress>div>div>div{background:linear-gradient(90deg,#3b4fd8,#6d4a8a)!important;border-radius:4px;}
-.stTextArea textarea,.stTextInput input{background:rgba(255,255,255,0.05)!important;border:1px solid rgba(100,116,200,0.18)!important;border-radius:12px!important;color:#ccd4e0!important;}
-.stButton>button{background:linear-gradient(135deg,#3b4fd8,#6d4a8a)!important;color:#fff!important;border:none!important;border-radius:12px!important;font-weight:700!important;font-family:'Outfit',sans-serif!important;box-shadow:0 4px 20px rgba(59,79,216,0.3)!important;}
-.stTabs [data-baseweb="tab-list"]{background:rgba(255,255,255,0.035);border-radius:12px;gap:4px;padding:4px;}
-.stTabs [data-baseweb="tab"]{border-radius:10px;color:#6b7590;font-weight:600;font-family:'Outfit',sans-serif;}
-.stTabs [aria-selected="true"]{background:linear-gradient(135deg,#3b4fd8,#6d4a8a)!important;color:#fff!important;}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+
+/* Base */
+html,body,[class*="css"]{
+    font-family:'Inter',sans-serif!important;
+    color:#ffffff!important;
+    font-size:16px!important;
+    font-weight:700!important;
+}
+.stApp{background:#0f1117!important;min-height:100vh;}
+
+/* ALL generic text — bright white, bold, glowing */
+p,span,div,li,td,th{
+    color:#ffffff!important;
+    font-size:15px!important;
+    font-weight:700!important;
+    text-shadow:0 0 10px rgba(255,255,255,0.22)!important;
+}
+strong,b{
+    color:#ffffff!important;
+    font-weight:900!important;
+    font-size:16px!important;
+    text-shadow:0 0 16px rgba(255,255,255,0.45)!important;
+}
+h1,h2,h3,h4,h5,h6{
+    color:#ffffff!important;
+    font-weight:900!important;
+    text-shadow:0 0 22px rgba(255,255,255,0.45),0 0 45px rgba(255,255,255,0.18)!important;
+}
+h1{font-size:2.2rem!important;}
+h2{font-size:1.8rem!important;}
+h3{font-size:1.5rem!important;}
+
+/* Sidebar */
+[data-testid="stSidebar"]{
+    background:#0d0f16!important;
+    border-right:1px solid rgba(255,255,255,0.1)!important;
+}
+[data-testid="stSidebar"] *{
+    color:#ffffff!important;
+    font-size:15px!important;
+    font-weight:800!important;
+    text-shadow:0 0 10px rgba(255,255,255,0.2)!important;
+}
+
+/* Cards */
+.pp-card{
+    background:rgba(255,255,255,0.04);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:20px;padding:24px;margin-bottom:16px;
+}
+
+/* KPI boxes */
+.pp-kpi{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:18px;padding:20px;text-align:center;
+}
+.pp-kpi-value{
+    font-size:2.4rem!important;
+    font-weight:900!important;
+    line-height:1;margin-bottom:6px;
+    text-shadow:0 0 22px currentColor!important;
+}
+.pp-kpi-label{
+    font-size:0.82rem!important;
+    color:#c0cce0!important;
+    letter-spacing:0.8px;
+    text-transform:uppercase;
+    font-weight:800!important;
+    text-shadow:0 0 8px rgba(255,255,255,0.2)!important;
+}
+.pp-kpi-sub{
+    font-size:1rem!important;
+    color:#a0b0c8!important;
+    margin-top:4px;
+    font-weight:700!important;
+}
+
+/* Risk badges — keep colour but make text bright */
+.badge-low{
+    background:rgba(50,130,100,.18);color:#6ee7b7!important;
+    border:1px solid rgba(50,130,100,.4);padding:5px 16px;
+    border-radius:20px;font-weight:800!important;font-size:.88rem!important;
+    text-shadow:0 0 12px rgba(110,231,183,0.6)!important;
+}
+.badge-moderate{
+    background:rgba(200,146,58,.18);color:#fcd34d!important;
+    border:1px solid rgba(200,146,58,.4);padding:5px 16px;
+    border-radius:20px;font-weight:800!important;font-size:.88rem!important;
+    text-shadow:0 0 12px rgba(252,211,77,0.6)!important;
+}
+.badge-high{
+    background:rgba(180,60,60,.18);color:#fca5a5!important;
+    border:1px solid rgba(180,60,60,.4);padding:5px 16px;
+    border-radius:20px;font-weight:800!important;font-size:.88rem!important;
+    text-shadow:0 0 12px rgba(252,165,165,0.6)!important;
+}
+
+/* Page titles — large, bold, glowing white, animated */
+@keyframes glow-pulse{
+    0%,100%{text-shadow:0 0 25px rgba(255,255,255,0.5),0 0 50px rgba(255,255,255,0.2);}
+    50%    {text-shadow:0 0 40px rgba(255,255,255,0.75),0 0 80px rgba(255,255,255,0.35);}
+}
+.pp-title{
+    font-size:2.2rem!important;
+    font-weight:900!important;
+    letter-spacing:-0.5px;
+    color:#ffffff!important;
+    -webkit-text-fill-color:#ffffff!important;
+    animation:glow-pulse 3s ease-in-out infinite;
+    margin-bottom:6px;
+}
+.pp-subtitle{
+    font-size:1.05rem!important;
+    color:#c0cce0!important;
+    font-weight:700!important;
+    margin-bottom:20px;
+    text-shadow:0 0 10px rgba(255,255,255,0.18)!important;
+}
+
+/* Labels for every widget */
+label,[data-testid="stWidgetLabel"],
+.stSlider label,.stTextInput label,
+.stTextArea label,.stSelectbox label,.stRadio label{
+    color:#ffffff!important;
+    font-size:15px!important;
+    font-weight:800!important;
+    text-shadow:0 0 12px rgba(255,255,255,0.28)!important;
+}
+
+/* Inputs */
+.stTextArea textarea,.stTextInput input{
+    background:rgba(255,255,255,0.07)!important;
+    border:1px solid rgba(255,255,255,0.2)!important;
+    border-radius:12px!important;
+    color:#ffffff!important;
+    font-size:15px!important;font-weight:700!important;
+}
+.stTextArea textarea::placeholder,.stTextInput input::placeholder{color:#a0b0c8!important;}
+
+/* Buttons */
+.stButton>button{
+    background:linear-gradient(135deg,#3b4fd8,#6d4a8a)!important;
+    color:#ffffff!important;border:none!important;
+    border-radius:12px!important;
+    font-weight:800!important;font-size:15px!important;
+    font-family:'Inter',sans-serif!important;
+    box-shadow:0 4px 20px rgba(59,79,216,0.4),0 0 30px rgba(59,79,216,0.2)!important;
+    text-shadow:0 0 12px rgba(255,255,255,0.45)!important;
+    letter-spacing:0.3px;padding:10px 20px!important;
+}
+
+/* Tabs */
+.stTabs [data-baseweb="tab-list"]{
+    background:rgba(255,255,255,0.05);border-radius:12px;gap:4px;padding:4px;
+}
+.stTabs [data-baseweb="tab"]{
+    border-radius:10px;
+    color:#c0cce0!important;
+    font-weight:800!important;font-size:14px!important;
+    font-family:'Inter',sans-serif!important;
+    text-shadow:0 0 8px rgba(255,255,255,0.15)!important;
+}
+.stTabs [aria-selected="true"]{
+    background:linear-gradient(135deg,#3b4fd8,#6d4a8a)!important;
+    color:#ffffff!important;font-weight:800!important;
+    text-shadow:0 0 14px rgba(255,255,255,0.5)!important;
+}
+
+/* Slider */
 div[data-baseweb="slider"] div{background:linear-gradient(90deg,#3b4fd8,#6d4a8a)!important;}
-[data-baseweb="select"] div{background:rgba(255,255,255,0.05)!important;border-color:rgba(100,116,200,0.18)!important;color:#ccd4e0!important;}
-label{color:#8a9ab5!important;}
-::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-thumb{background:rgba(100,116,200,.25);border-radius:3px;}
+
+/* Select */
+[data-baseweb="select"] div{
+    background:rgba(255,255,255,0.07)!important;
+    border-color:rgba(255,255,255,0.2)!important;
+    color:#ffffff!important;font-weight:700!important;
+}
+
+/* Progress */
+.stProgress>div>div>div{background:linear-gradient(90deg,#3b4fd8,#6d4a8a)!important;border-radius:4px;}
+
+/* Captions */
+.stCaption,caption,small{
+    color:#c0cce0!important;font-size:13px!important;
+    font-weight:700!important;
+    text-shadow:0 0 6px rgba(255,255,255,0.15)!important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.2);border-radius:3px;}
 </style>""",unsafe_allow_html=True)
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -214,7 +383,7 @@ def page_auth():
           <div style="font-size:3.5rem;margin-bottom:8px;">🧠</div>
           <div style="font-size:2rem;font-weight:900;background:linear-gradient(135deg,#7b8cde,#8c607e,#4f7ab3);
             -webkit-background-clip:text;-webkit-text-fill-color:transparent;">PredictPulse</div>
-          <div style="font-size:.8rem;color:#5a6478;letter-spacing:1px;margin-top:4px;">
+          <div style="font-size:.95rem;color:#a0b0c8;letter-spacing:1px;margin-top:4px;">
             AI EARLY WARNING SYSTEM FOR STUDENT BURNOUT</div></div>""",unsafe_allow_html=True)
         ti,tu = st.tabs(["🔑  Sign In","✨  Sign Up"])
         with ti:
@@ -240,7 +409,7 @@ def page_auth():
                         user_name=name,user_role=role,page="dashboard")
                     st.rerun()
                 else: st.error("Please fill in name and email.")
-        st.markdown("""<div style="text-align:center;font-size:.7rem;color:#3d4a60;margin-top:20px;">
+        st.markdown("""<div style="text-align:center;font-size:1rem;color:#8090a8;margin-top:20px;">
           🔒 JWT-Secured · Privacy-First · FERPA Compliant</div>""",unsafe_allow_html=True)
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -252,13 +421,13 @@ def sidebar():
           <div style="font-size:2.5rem;margin-bottom:6px;">🧠</div>
           <div style="font-size:1.3rem;font-weight:900;background:linear-gradient(135deg,#7b8cde,#8c607e);
             -webkit-background-clip:text;-webkit-text-fill-color:transparent;">PredictPulse</div>
-          <div style="font-size:.65rem;color:#5a6478;letter-spacing:1px;">AI BURNOUT SYSTEM</div></div>
+          <div style="font-size:.95rem;color:#a0b0c8;letter-spacing:1px;">AI BURNOUT SYSTEM</div></div>
           <hr style="border-color:rgba(100,116,200,.14);margin:0 0 14px;">
           <div style="background:rgba(100,116,200,.07);border:1px solid rgba(100,116,200,.18);
             border-radius:12px;padding:12px 16px;margin-bottom:18px;text-align:center;">
-            <div style="font-size:.72rem;color:#6b7590;margin-bottom:2px;">Signed in as</div>
-            <div style="font-weight:700;font-size:.9rem;">{st.session_state.user_name}</div>
-            <div style="font-size:.65rem;color:#7b8cde;text-transform:uppercase;letter-spacing:.5px;
+            <div style="font-size:1rem;color:#c0cce0;margin-bottom:2px;">Signed in as</div>
+            <div style="font-weight:800;font-size:1rem;">{st.session_state.user_name}</div>
+            <div style="font-size:.95rem;color:#a5b4fc;text-transform:uppercase;letter-spacing:.5px;
               margin-top:2px;">{st.session_state.user_role}</div></div>""",unsafe_allow_html=True)
         nav=[("🏠","Dashboard","dashboard"),("🧠","Predict","predict"),
              ("🎮","Wellness","wellness"),("📊","Analytics","analytics")]
@@ -270,8 +439,8 @@ def sidebar():
         st.markdown("<br>",unsafe_allow_html=True)
         st.markdown("""<div style="background:rgba(60,100,160,.07);border:1px solid rgba(60,100,160,.18);
           border-radius:12px;padding:12px 14px;margin-bottom:12px;">
-          <div style="font-size:.7rem;font-weight:700;color:#4f7ab3;margin-bottom:4px;">🌐 FEDERATED LEARNING</div>
-          <div style="font-size:.65rem;color:#5a6478;line-height:1.5;">
+          <div style="font-size:1rem;font-weight:800;color:#93c5fd;margin-bottom:4px;">🌐 FEDERATED LEARNING</div>
+          <div style="font-size:.95rem;color:#a0b0c8;line-height:1.5;">
             Cross-institutional privacy-preserving training — coming soon via Flower</div></div>""",
             unsafe_allow_html=True)
         if st.button("🚪  Sign Out",use_container_width=True,key="signout"):
@@ -293,7 +462,7 @@ def page_dashboard():
     ]):
         with col: st.markdown(f'''<div class="pp-kpi" style="border-color:{color}30;">
           <div style="font-size:1.6rem;margin-bottom:6px;">{icon}</div>
-          <div class="pp-kpi-value" style="color:{color};">{val}</div>
+          <div class="pp-kpi-value" style="text-shadow:0 0 20px currentColor;" style="color:{color};">{val}</div>
           <div class="pp-kpi-label">{label}</div><div class="pp-kpi-sub">{sub}</div></div>''',unsafe_allow_html=True)
     st.markdown("<br>",unsafe_allow_html=True)
     trend=mock_trend()
@@ -324,8 +493,8 @@ def page_dashboard():
         with col: st.markdown(f'''<div style="background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.055);
           border-radius:14px;padding:14px;text-align:center;">
           <div style="font-size:1.8rem;margin-bottom:8px;">{r["icon"]}</div>
-          <div style="font-size:.78rem;font-weight:700;margin-bottom:4px;">{r["title"]}</div>
-          <div style="font-size:.7rem;color:#5a6478;line-height:1.5;">{r["desc"]}</div></div>''',unsafe_allow_html=True)
+          <div style="font-size:1rem;font-weight:900;margin-bottom:4px;color:#ffffff;text-shadow:0 0 12px rgba(255,255,255,0.4);">{r["title"]}</div>
+          <div style="font-size:1rem;color:#a0b0c8;line-height:1.5;">{r["desc"]}</div></div>''',unsafe_allow_html=True)
     st.markdown('</div>',unsafe_allow_html=True)
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -379,10 +548,10 @@ def page_predict():
         st.markdown("<br>",unsafe_allow_html=True)
         res=st.session_state.predict_result
         if not res:
-            st.markdown("""<div style="text-align:center;padding:60px 0;color:#5a6478;">
+            st.markdown("""<div style="text-align:center;padding:60px 0;color:#a0b0c8;">
               <div style="font-size:3rem;margin-bottom:12px;">🔮</div>
-              <div style="font-size:1rem;font-weight:600;">No prediction yet</div>
-              <div style="font-size:.8rem;margin-top:6px;">Complete Academic Inputs and Journal Entry first</div>
+              <div style="font-size:1rem;font-weight:700;">No prediction yet</div>
+              <div style="font-size:.95rem;margin-top:6px;">Complete Academic Inputs and Journal Entry first</div>
             </div>""",unsafe_allow_html=True); return
         sc=res["score"]; nlp=res["nlp"]
         c1,c2=st.columns([1,1.4])
@@ -400,12 +569,12 @@ def page_predict():
             em=nlp.get("emotional_score",0.3); ec=rcol(em)
             sent=nlp.get("sentiment","Neutral"); sc2="#9b4545" if sent=="Negative" else "#3d8c6e" if sent=="Positive" else "#b07d2a"
             sw=nlp.get("stress_words",[])
-            with n1: st.markdown(f'<div class="pp-kpi"><div class="pp-kpi-value" style="color:{ec};">{round(em*100)}%</div><div class="pp-kpi-label">Emotional Stress</div></div>',unsafe_allow_html=True)
-            with n2: st.markdown(f'<div class="pp-kpi"><div class="pp-kpi-value" style="color:{sc2};font-size:1.3rem;">{sent}</div><div class="pp-kpi-label">Sentiment</div></div>',unsafe_allow_html=True)
-            with n3: st.markdown(f'<div class="pp-kpi"><div class="pp-kpi-value" style="color:#8c607e;">{len(sw)}</div><div class="pp-kpi-label">Stress Signals</div></div>',unsafe_allow_html=True)
+            with n1: st.markdown(f'<div class="pp-kpi"><div class="pp-kpi-value" style="text-shadow:0 0 20px currentColor;" style="color:{ec};">{round(em*100)}%</div><div class="pp-kpi-label">Emotional Stress</div></div>',unsafe_allow_html=True)
+            with n2: st.markdown(f'<div class="pp-kpi"><div class="pp-kpi-value" style="text-shadow:0 0 20px currentColor;" style="color:{sc2};font-size:1.3rem;">{sent}</div><div class="pp-kpi-label">Sentiment</div></div>',unsafe_allow_html=True)
+            with n3: st.markdown(f'<div class="pp-kpi"><div class="pp-kpi-value" style="text-shadow:0 0 20px currentColor;" style="color:#f0abcb;">{len(sw)}</div><div class="pp-kpi-label">Stress Signals</div></div>',unsafe_allow_html=True)
             if sw:
                 st.markdown("<br>**Detected stress words:**",unsafe_allow_html=True)
-                st.markdown(" ".join([f'<span style="background:rgba(140,60,60,.12);color:#9b4545;border:1px solid rgba(140,60,60,.25);padding:3px 10px;border-radius:12px;font-size:.72rem;font-weight:700;margin-right:4px;">{w}</span>' for w in sw]),unsafe_allow_html=True)
+                st.markdown(" ".join([f'<span style="background:rgba(140,60,60,.12);color:#fca5a5;border:1px solid rgba(140,60,60,.25);padding:3px 10px;border-radius:12px;font-size:1rem;font-weight:800;margin-right:4px;">{w}</span>' for w in sw]),unsafe_allow_html=True)
             st.markdown('</div>',unsafe_allow_html=True)
         c3,c4=st.columns(2)
         with c3:
@@ -432,8 +601,8 @@ def page_predict():
             fr.update_layout(height=220,margin=dict(l=20,r=20,t=20,b=20),paper_bgcolor="rgba(0,0,0,0)",
                 plot_bgcolor="rgba(0,0,0,0)",
                 polar=dict(bgcolor="rgba(0,0,0,0)",
-                    radialaxis=dict(visible=True,range=[0,100],color="#3d4a60",gridcolor="rgba(255,255,255,0.055)"),
-                    angularaxis=dict(color="#6b7590",gridcolor="rgba(255,255,255,0.055)")),
+                    radialaxis=dict(visible=True,range=[0,100],color="#8090a8",gridcolor="rgba(255,255,255,0.055)"),
+                    angularaxis=dict(color="#c0cce0",gridcolor="rgba(255,255,255,0.055)")),
                 font=dict(family="Outfit"),showlegend=False)
             st.plotly_chart(fr,use_container_width=True,config={"displayModeBar":False})
             st.markdown('</div>',unsafe_allow_html=True)
@@ -443,8 +612,8 @@ def page_predict():
             with col: st.markdown(f'''<div style="background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.055);
               border-radius:14px;padding:14px;text-align:center;">
               <div style="font-size:1.8rem;margin-bottom:8px;">{r["icon"]}</div>
-              <div style="font-size:.78rem;font-weight:700;margin-bottom:4px;">{r["title"]}</div>
-              <div style="font-size:.7rem;color:#5a6478;line-height:1.5;">{r["desc"]}</div></div>''',unsafe_allow_html=True)
+              <div style="font-size:1rem;font-weight:900;margin-bottom:4px;color:#ffffff;text-shadow:0 0 12px rgba(255,255,255,0.4);">{r["title"]}</div>
+              <div style="font-size:1rem;color:#a0b0c8;line-height:1.5;">{r["desc"]}</div></div>''',unsafe_allow_html=True)
         st.markdown('</div>',unsafe_allow_html=True)
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -462,9 +631,9 @@ def page_wellness():
             st.markdown("### 🌬️ Box Breathing 4-4-4-4")
             st.caption("Science-backed technique used by therapists and Navy SEALs to calm the nervous system.")
             ph=st.session_state.breath_phase
-            COLS={"inhale":"#4f7ab3","hold1":"#7b8cde","exhale":"#3d8c6e","hold2":"#8c607e","idle":"#6b7590"}
+            COLS={"inhale":"#4f7ab3","hold1":"#7b8cde","exhale":"#3d8c6e","hold2":"#8c607e","idle":"#c0cce0"}
             LBLS={"inhale":"Breathe In 🌬️","hold1":"Hold 💙","exhale":"Breathe Out ✨","hold2":"Hold 🌙","idle":"Ready ✦"}
-            c=COLS.get(ph,"#6b7590"); sz=180 if ph in ["inhale","hold1"] else 120
+            c=COLS.get(ph,"#c0cce0"); sz=180 if ph in ["inhale","hold1"] else 120
             st.markdown(f'''<div style="display:flex;justify-content:center;margin:24px 0;">
               <div style="width:{sz}px;height:{sz}px;border-radius:50%;background:radial-gradient(circle at 35% 35%,{c}40,{c}15);
                 border:3px solid {c}80;display:flex;align-items:center;justify-content:center;transition:all 1.5s;
@@ -483,7 +652,7 @@ def page_wellness():
                 nxt=PSQ[(PSQ.index(ph)+1)%4]
                 if st.button(f"Next → {LBLS[nxt]}",use_container_width=True,key="bn"):
                     st.session_state.breath_phase=nxt; st.rerun()
-            st.markdown(f'<div style="margin-top:12px;font-size:.8rem;color:#6b7590;">Cycles: <strong style="color:#7b8cde;">{st.session_state.breath_cycles}</strong></div>',unsafe_allow_html=True)
+            st.markdown(f'<div style="margin-top:12px;font-size:.95rem;color:#c0cce0;">Cycles: <strong style="color:#a5b4fc;">{st.session_state.breath_cycles}</strong></div>',unsafe_allow_html=True)
             st.markdown('</div>',unsafe_allow_html=True)
     with tm:
         st.markdown("<br>",unsafe_allow_html=True)
@@ -506,8 +675,8 @@ def page_wellness():
                 line=dict(color="#7b8cde",width=2),marker=dict(size=7),fillcolor="rgba(167,139,250,0.1)"))
             fm.update_layout(height=180,margin=dict(l=0,r=0,t=10,b=0),paper_bgcolor="rgba(0,0,0,0)",
                 plot_bgcolor="rgba(0,0,0,0)",showlegend=False,font=dict(family="Outfit"),
-                xaxis=dict(showgrid=False,color="#5a6478"),
-                yaxis=dict(range=[0,5.5],showgrid=True,gridcolor="rgba(255,255,255,0.05)",color="#5a6478",
+                xaxis=dict(showgrid=False,color="#a0b0c8"),
+                yaxis=dict(range=[0,5.5],showgrid=True,gridcolor="rgba(255,255,255,0.05)",color="#a0b0c8",
                     tickvals=[1,2,3,4,5],ticktext=["😰","😟","😐","🙂","😊"]))
             st.plotly_chart(fm,use_container_width=True,config={"displayModeBar":False})
             st.markdown('</div>',unsafe_allow_html=True)
@@ -521,8 +690,8 @@ def page_wellness():
             st.markdown("**🌸 Today's Gratitude**")
             st.markdown(f'''<div style="background:rgba(100,116,200,.07);border:1px solid rgba(100,116,200,.18);
               border-radius:12px;padding:12px 16px;margin-bottom:14px;">
-              <div style="font-size:.7rem;color:#7b8cde;font-weight:700;letter-spacing:1px;margin-bottom:4px;">✨ TODAY'S PROMPT</div>
-              <div style="font-size:.85rem;color:#ccd4e0;">{PROMPTS[st.session_state.prompt_idx]}</div></div>''',unsafe_allow_html=True)
+              <div style="font-size:1rem;color:#a5b4fc;font-weight:800;letter-spacing:1px;margin-bottom:4px;">✨ TODAY'S PROMPT</div>
+              <div style="font-size:1rem;color:#ffffff;">{PROMPTS[st.session_state.prompt_idx]}</div></div>''',unsafe_allow_html=True)
             gv=st.text_area("Entry",height=90,label_visibility="collapsed",placeholder="I'm grateful for…",key="gv")
             b1g,b2g=st.columns(2)
             with b1g:
@@ -539,7 +708,7 @@ def page_wellness():
             st.markdown('<div class="pp-card">',unsafe_allow_html=True)
             st.markdown("**📖 Your Entries**")
             for e in st.session_state.gratitude[:6]:
-                st.markdown(f'<div style="background:rgba(255,255,255,.035);border-radius:10px;padding:10px 14px;margin-bottom:8px;border:1px solid rgba(255,255,255,.06);font-size:.8rem;color:#8a9ab5;display:flex;gap:10px;align-items:flex-start;"><span style="font-size:1rem;flex:0 0 auto;">🌸</span><span style="line-height:1.5;">{e}</span></div>',unsafe_allow_html=True)
+                st.markdown(f'<div style="background:rgba(255,255,255,.035);border-radius:10px;padding:10px 14px;margin-bottom:8px;border:1px solid rgba(255,255,255,.06);font-size:.95rem;color:#c0cce0;display:flex;gap:10px;align-items:flex-start;"><span style="font-size:1rem;flex:0 0 auto;">🌸</span><span style="line-height:1.5;">{e}</span></div>',unsafe_allow_html=True)
             st.markdown('</div>',unsafe_allow_html=True)
     with tq:
         st.markdown("<br>",unsafe_allow_html=True)
@@ -563,8 +732,8 @@ def page_wellness():
             st.markdown(f'''<div style="background:{c}15;border:1px solid {c}40;border-radius:16px;
               padding:20px;text-align:center;margin-top:16px;">
               <div style="font-size:2.5rem;font-weight:900;color:{c};">{tot}/20</div>
-              <div style="font-size:1rem;font-weight:700;color:{c};margin-top:4px;">{lb}</div>
-              <div style="font-size:.8rem;color:#6b7590;margin-top:8px;">{mg}</div></div>''',unsafe_allow_html=True)
+              <div style="font-size:1rem;font-weight:800;color:{c};margin-top:4px;">{lb}</div>
+              <div style="font-size:.95rem;color:#c0cce0;margin-top:8px;">{mg}</div></div>''',unsafe_allow_html=True)
         st.markdown('</div>',unsafe_allow_html=True)
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -582,7 +751,7 @@ def page_analytics():
             line=dict(color="#4f7ab3",width=2),marker=dict(size=7),fill="tozeroy",fillcolor="rgba(60,100,160,0.09)"))
         f.update_layout(height=200,showlegend=False,paper_bgcolor="rgba(0,0,0,0)",
             plot_bgcolor="rgba(0,0,0,0)",margin=dict(l=0,r=0,t=10,b=0),font=dict(family="Outfit"),
-            xaxis=dict(showgrid=False,color="#5a6478"),yaxis=dict(range=[2,4],showgrid=True,gridcolor="rgba(255,255,255,0.05)",color="#5a6478"))
+            xaxis=dict(showgrid=False,color="#a0b0c8"),yaxis=dict(range=[2,4],showgrid=True,gridcolor="rgba(255,255,255,0.05)",color="#a0b0c8"))
         st.plotly_chart(f,use_container_width=True,config={"displayModeBar":False})
         st.markdown('</div>',unsafe_allow_html=True)
     with cr:
@@ -614,7 +783,7 @@ def page_admin():
     a1,a2,a3,a4=st.columns(4)
     for col,(val,lb,c) in zip([a1,a2,a3,a4],[("312","Total Students","#4f7ab3"),
         ("17%","High Risk","#9b4545"),("35%","Moderate Risk","#b07d2a"),("48%","Low Risk","#3d8c6e")]):
-        with col: st.markdown(f'<div class="pp-kpi"><div class="pp-kpi-value" style="color:{c};">{val}</div><div class="pp-kpi-label">{lb}</div></div>',unsafe_allow_html=True)
+        with col: st.markdown(f'<div class="pp-kpi"><div class="pp-kpi-value" style="text-shadow:0 0 20px currentColor;" style="color:{c};">{val}</div><div class="pp-kpi-label">{lb}</div></div>',unsafe_allow_html=True)
     st.markdown("<br>",unsafe_allow_html=True)
     cl,cr=st.columns(2)
     with cl:
@@ -646,20 +815,20 @@ def page_admin():
         text=[[f"{v}%" for v in row] for row in hdf.values],texttemplate="%{text}",
         textfont=dict(family="Outfit",size=12,color="white"),showscale=True))
     fh.update_layout(height=280,margin=dict(l=0,r=0,t=10,b=0),paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="rgba(0,0,0,0)",xaxis=dict(color="#5a6478"),yaxis=dict(color="#8a9ab5"),font=dict(family="Outfit"))
+        plot_bgcolor="rgba(0,0,0,0)",xaxis=dict(color="#a0b0c8"),yaxis=dict(color="#8a9ab5"),font=dict(family="Outfit"))
     st.plotly_chart(fh,use_container_width=True,config={"displayModeBar":False})
     st.markdown('</div>',unsafe_allow_html=True)
     st.markdown('''<div class="pp-card" style="border-color:rgba(60,100,160,.25);background:rgba(96,165,250,.05);">
       <div style="display:flex;gap:16px;align-items:flex-start;">
         <div style="font-size:2.5rem;">🌐</div>
         <div>
-          <div style="font-size:1rem;font-weight:800;color:#4f7ab3;margin-bottom:6px;">Federated Learning Module — Coming Soon</div>
-          <div style="font-size:.82rem;color:#5a6478;line-height:1.6;margin-bottom:12px;">
+          <div style="font-size:1rem;font-weight:800;color:#93c5fd;margin-bottom:6px;">Federated Learning Module — Coming Soon</div>
+          <div style="font-size:.95rem;color:#a0b0c8;line-height:1.6;margin-bottom:12px;">
             Train a global burnout model across institutions without sharing raw student data.
             Only model gradients are shared — preserving full privacy via the Flower (flwr) framework.</div>
-          <span style="background:rgba(60,100,160,.18);color:#4f7ab3;border:1px solid rgba(60,100,160,.35);padding:3px 12px;border-radius:12px;font-size:.72rem;font-weight:700;margin-right:8px;">Privacy-Preserving</span>
-          <span style="background:rgba(100,116,200,.18);color:#7b8cde;border:1px solid rgba(100,116,200,.35);padding:3px 12px;border-radius:12px;font-size:.72rem;font-weight:700;margin-right:8px;">Differential Privacy</span>
-          <span style="background:rgba(50,130,100,.16);color:#3d8c6e;border:1px solid rgba(50,130,100,.32);padding:3px 12px;border-radius:12px;font-size:.72rem;font-weight:700;">Multi-Institutional</span>
+          <span style="background:rgba(60,100,160,.18);color:#93c5fd;border:1px solid rgba(60,100,160,.35);padding:3px 12px;border-radius:12px;font-size:1rem;font-weight:800;margin-right:8px;">Privacy-Preserving</span>
+          <span style="background:rgba(100,116,200,.18);color:#a5b4fc;border:1px solid rgba(100,116,200,.35);padding:3px 12px;border-radius:12px;font-size:1rem;font-weight:800;margin-right:8px;">Differential Privacy</span>
+          <span style="background:rgba(50,130,100,.16);color:#6ee7b7;border:1px solid rgba(50,130,100,.32);padding:3px 12px;border-radius:12px;font-size:1rem;font-weight:800;">Multi-Institutional</span>
         </div></div></div>''',unsafe_allow_html=True)
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -673,9 +842,9 @@ def main():
      "analytics":page_analytics,"admin":page_admin}.get(st.session_state.page,page_dashboard)()
     st.markdown("<br><br>",unsafe_allow_html=True)
     st.markdown('''<div style="text-align:center;padding:20px 0;
-      border-top:1px solid rgba(100,116,200,.1);font-size:.72rem;color:#3d4a60;margin-top:40px;">
+      border-top:1px solid rgba(100,116,200,.1);font-size:1rem;color:#8090a8;margin-top:40px;">
       🧠 PredictPulse · Built with ❤️ for student wellbeing ·
-      <span style="color:#5a6478;">If you're struggling — please reach out to your counselor 💙</span>
+      <span style="color:#a0b0c8;">If you're struggling — please reach out to your counselor 💙</span>
     </div>''',unsafe_allow_html=True)
 
 if __name__=="__main__":
