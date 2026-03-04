@@ -126,7 +126,7 @@ def admin_data():
 # ══════════════════════════════════════════════════════════════════════════════
 # HELPERS
 # ══════════════════════════════════════════════════════════════════════════════
-def rcol(s):  return "#34d399" if s<0.35 else "#fbbf24" if s<0.65 else "#f87171"
+def rcol(s):  return "#3d8c6e" if s<0.35 else "#b07d2a" if s<0.65 else "#9b4545"
 def rlbl(s):
     if s<0.35: return "Low Risk","badge-low"
     if s<0.65: return "Moderate Risk","badge-moderate"
@@ -134,20 +134,20 @@ def rlbl(s):
 
 _CL = dict(paper_bgcolor="rgba(0,0,0,0)",plot_bgcolor="rgba(0,0,0,0)",
            margin=dict(l=0,r=0,t=10,b=0),font=dict(family="Outfit"),
-           xaxis=dict(showgrid=False,color="#475569"),
-           yaxis=dict(showgrid=True,gridcolor="rgba(255,255,255,0.05)",color="#475569"),
-           legend=dict(bgcolor="rgba(0,0,0,0)",font=dict(color="#94a3b8",size=11)))
+           xaxis=dict(showgrid=False,color="#5a6478"),
+           yaxis=dict(showgrid=True,gridcolor="rgba(255,255,255,0.05)",color="#5a6478"),
+           legend=dict(bgcolor="rgba(0,0,0,0)",font=dict(color="#8a9ab5",size=11)))
 
 def gauge(score):
     c = rcol(score)
     fig = go.Figure(go.Indicator(
         mode="gauge+number", value=round(score*100,1),
         number={"suffix":"%","font":{"size":44,"color":c,"family":"Outfit"}},
-        gauge={"axis":{"range":[0,100],"tickcolor":"#334155","tickfont":{"color":"#475569","size":11}},
+        gauge={"axis":{"range":[0,100],"tickcolor":"#3d4a60","tickfont":{"color":"#5a6478","size":11}},
                "bar":{"color":c,"thickness":0.25},"bgcolor":"rgba(0,0,0,0)","borderwidth":0,
-               "steps":[{"range":[0,35],"color":"rgba(52,211,153,0.12)"},
-                        {"range":[35,65],"color":"rgba(251,191,36,0.12)"},
-                        {"range":[65,100],"color":"rgba(248,113,113,0.12)"}],
+               "steps":[{"range":[0,35],"color":"rgba(50,130,100,0.1)"},
+                        {"range":[35,65],"color":"rgba(160,110,30,0.1)"},
+                        {"range":[65,100],"color":"rgba(140,60,60,0.1)"}],
                "threshold":{"line":{"color":c,"width":4},"thickness":0.85,"value":round(score*100,1)}},
     ))
     fig.update_layout(height=260,margin=dict(l=20,r=20,t=20,b=0),
@@ -161,30 +161,30 @@ def gauge(score):
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&display=swap');
-html,body,[class*="css"]{font-family:'Outfit',sans-serif!important;color:#e2e8f0;}
-.stApp{background:linear-gradient(135deg,#0a0a1a 0%,#0d0d2b 45%,#120825 75%,#0a0a1a 100%);min-height:100vh;}
-[data-testid="stSidebar"]{background:rgba(10,10,26,0.97)!important;border-right:1px solid rgba(167,139,250,0.15)!important;}
-[data-testid="stSidebar"] *{color:#e2e8f0!important;}
-.pp-card{background:rgba(255,255,255,0.04);backdrop-filter:blur(20px);border:1px solid rgba(167,139,250,0.18);border-radius:20px;padding:24px;margin-bottom:16px;}
-.pp-kpi{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:18px;padding:20px;text-align:center;}
+html,body,[class*="css"]{font-family:'Outfit',sans-serif!important;color:#ccd4e0;}
+.stApp{background:#0f1117;min-height:100vh;}
+[data-testid="stSidebar"]{background:#0d0f16!important;border-right:1px solid rgba(255,255,255,0.07)!important;}
+[data-testid="stSidebar"] *{color:#ccd4e0!important;}
+.pp-card{background:rgba(255,255,255,0.035);backdrop-filter:blur(20px);border:1px solid rgba(100,116,200,0.18);border-radius:20px;padding:24px;margin-bottom:16px;}
+.pp-kpi{background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.06);border-radius:18px;padding:20px;text-align:center;}
 .pp-kpi-value{font-size:2.2rem;font-weight:900;line-height:1;margin-bottom:4px;}
-.pp-kpi-label{font-size:0.75rem;color:#64748b;letter-spacing:.5px;text-transform:uppercase;}
-.pp-kpi-sub{font-size:0.7rem;color:#334155;margin-top:4px;}
-.badge-low{background:rgba(52,211,153,.15);color:#34d399;border:1px solid rgba(52,211,153,.3);padding:4px 14px;border-radius:20px;font-weight:700;font-size:.8rem;}
-.badge-moderate{background:rgba(251,191,36,.15);color:#fbbf24;border:1px solid rgba(251,191,36,.3);padding:4px 14px;border-radius:20px;font-weight:700;font-size:.8rem;}
-.badge-high{background:rgba(248,113,113,.15);color:#f87171;border:1px solid rgba(248,113,113,.3);padding:4px 14px;border-radius:20px;font-weight:700;font-size:.8rem;}
-.pp-title{font-size:1.7rem;font-weight:900;letter-spacing:-.5px;background:linear-gradient(135deg,#e2e8f0,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px;}
-.pp-subtitle{font-size:.85rem;color:#475569;margin-bottom:20px;}
-.stProgress>div>div>div{background:linear-gradient(90deg,#7c3aed,#ec4899)!important;border-radius:4px;}
-.stTextArea textarea,.stTextInput input{background:rgba(255,255,255,0.06)!important;border:1px solid rgba(167,139,250,0.2)!important;border-radius:12px!important;color:#e2e8f0!important;}
-.stButton>button{background:linear-gradient(135deg,#7c3aed,#ec4899)!important;color:#fff!important;border:none!important;border-radius:12px!important;font-weight:700!important;font-family:'Outfit',sans-serif!important;box-shadow:0 4px 20px rgba(124,58,237,0.4)!important;}
-.stTabs [data-baseweb="tab-list"]{background:rgba(255,255,255,0.04);border-radius:12px;gap:4px;padding:4px;}
-.stTabs [data-baseweb="tab"]{border-radius:10px;color:#64748b;font-weight:600;font-family:'Outfit',sans-serif;}
-.stTabs [aria-selected="true"]{background:linear-gradient(135deg,#7c3aed,#ec4899)!important;color:#fff!important;}
-div[data-baseweb="slider"] div{background:linear-gradient(90deg,#7c3aed,#ec4899)!important;}
-[data-baseweb="select"] div{background:rgba(255,255,255,0.06)!important;border-color:rgba(167,139,250,0.2)!important;color:#e2e8f0!important;}
-label{color:#94a3b8!important;}
-::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-thumb{background:rgba(167,139,250,.3);border-radius:3px;}
+.pp-kpi-label{font-size:0.75rem;color:#6b7590;letter-spacing:.5px;text-transform:uppercase;}
+.pp-kpi-sub{font-size:0.7rem;color:#3d4a60;margin-top:4px;}
+.badge-low{background:rgba(50,130,100,.12);color:#3d8c6e;border:1px solid rgba(50,130,100,.25);padding:4px 14px;border-radius:20px;font-weight:700;font-size:.8rem;}
+.badge-moderate{background:rgba(160,110,30,.12);color:#b07d2a;border:1px solid rgba(160,110,30,.25);padding:4px 14px;border-radius:20px;font-weight:700;font-size:.8rem;}
+.badge-high{background:rgba(140,60,60,.12);color:#9b4545;border:1px solid rgba(140,60,60,.25);padding:4px 14px;border-radius:20px;font-weight:700;font-size:.8rem;}
+.pp-title{font-size:1.7rem;font-weight:900;letter-spacing:-.5px;background:linear-gradient(135deg,#ccd4e0,#7b8cde);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px;}
+.pp-subtitle{font-size:.85rem;color:#5a6478;margin-bottom:20px;}
+.stProgress>div>div>div{background:linear-gradient(90deg,#3b4fd8,#6d4a8a)!important;border-radius:4px;}
+.stTextArea textarea,.stTextInput input{background:rgba(255,255,255,0.05)!important;border:1px solid rgba(100,116,200,0.18)!important;border-radius:12px!important;color:#ccd4e0!important;}
+.stButton>button{background:linear-gradient(135deg,#3b4fd8,#6d4a8a)!important;color:#fff!important;border:none!important;border-radius:12px!important;font-weight:700!important;font-family:'Outfit',sans-serif!important;box-shadow:0 4px 20px rgba(59,79,216,0.3)!important;}
+.stTabs [data-baseweb="tab-list"]{background:rgba(255,255,255,0.035);border-radius:12px;gap:4px;padding:4px;}
+.stTabs [data-baseweb="tab"]{border-radius:10px;color:#6b7590;font-weight:600;font-family:'Outfit',sans-serif;}
+.stTabs [aria-selected="true"]{background:linear-gradient(135deg,#3b4fd8,#6d4a8a)!important;color:#fff!important;}
+div[data-baseweb="slider"] div{background:linear-gradient(90deg,#3b4fd8,#6d4a8a)!important;}
+[data-baseweb="select"] div{background:rgba(255,255,255,0.05)!important;border-color:rgba(100,116,200,0.18)!important;color:#ccd4e0!important;}
+label{color:#8a9ab5!important;}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-thumb{background:rgba(100,116,200,.25);border-radius:3px;}
 </style>""",unsafe_allow_html=True)
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -212,16 +212,16 @@ def page_auth():
     with col:
         st.markdown("""<div style="text-align:center;margin-bottom:32px;">
           <div style="font-size:3.5rem;margin-bottom:8px;">🧠</div>
-          <div style="font-size:2rem;font-weight:900;background:linear-gradient(135deg,#a78bfa,#f472b6,#60a5fa);
+          <div style="font-size:2rem;font-weight:900;background:linear-gradient(135deg,#7b8cde,#8c607e,#4f7ab3);
             -webkit-background-clip:text;-webkit-text-fill-color:transparent;">PredictPulse</div>
-          <div style="font-size:.8rem;color:#475569;letter-spacing:1px;margin-top:4px;">
+          <div style="font-size:.8rem;color:#5a6478;letter-spacing:1px;margin-top:4px;">
             AI EARLY WARNING SYSTEM FOR STUDENT BURNOUT</div></div>""",unsafe_allow_html=True)
         ti,tu = st.tabs(["🔑  Sign In","✨  Sign Up"])
         with ti:
             st.markdown("<br>",unsafe_allow_html=True)
             email = st.text_input("Email",placeholder="student@university.edu",key="li_e")
             st.text_input("Password",type="password",placeholder="••••••••",key="li_p")
-            if st.button("Enter the Cosmos →",key="btn_li",use_container_width=True):
+            if st.button("Sign In →",key="btn_li",use_container_width=True):
                 if email:
                     st.session_state.update(logged_in=True,user_email=email,
                         user_name=email.split("@")[0].replace("."," ").title(),
@@ -234,13 +234,13 @@ def page_auth():
             email2= st.text_input("Email",placeholder="student@university.edu",key="su_e")
             st.text_input("Password",type="password",placeholder="••••••••",key="su_p")
             role  = st.selectbox("Role",["student","admin"],key="su_r")
-            if st.button("Begin Journey →",key="btn_su",use_container_width=True):
+            if st.button("Create Account →",key="btn_su",use_container_width=True):
                 if name and email2:
                     st.session_state.update(logged_in=True,user_email=email2,
                         user_name=name,user_role=role,page="dashboard")
                     st.rerun()
                 else: st.error("Please fill in name and email.")
-        st.markdown("""<div style="text-align:center;font-size:.7rem;color:#334155;margin-top:20px;">
+        st.markdown("""<div style="text-align:center;font-size:.7rem;color:#3d4a60;margin-top:20px;">
           🔒 JWT-Secured · Privacy-First · FERPA Compliant</div>""",unsafe_allow_html=True)
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -250,15 +250,15 @@ def sidebar():
     with st.sidebar:
         st.markdown(f"""<div style="text-align:center;padding:20px 0 12px;">
           <div style="font-size:2.5rem;margin-bottom:6px;">🧠</div>
-          <div style="font-size:1.3rem;font-weight:900;background:linear-gradient(135deg,#a78bfa,#f472b6);
+          <div style="font-size:1.3rem;font-weight:900;background:linear-gradient(135deg,#7b8cde,#8c607e);
             -webkit-background-clip:text;-webkit-text-fill-color:transparent;">PredictPulse</div>
-          <div style="font-size:.65rem;color:#475569;letter-spacing:1px;">AI BURNOUT SYSTEM</div></div>
-          <hr style="border-color:rgba(167,139,250,.15);margin:0 0 14px;">
-          <div style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.2);
+          <div style="font-size:.65rem;color:#5a6478;letter-spacing:1px;">AI BURNOUT SYSTEM</div></div>
+          <hr style="border-color:rgba(100,116,200,.14);margin:0 0 14px;">
+          <div style="background:rgba(100,116,200,.07);border:1px solid rgba(100,116,200,.18);
             border-radius:12px;padding:12px 16px;margin-bottom:18px;text-align:center;">
-            <div style="font-size:.72rem;color:#64748b;margin-bottom:2px;">Signed in as</div>
+            <div style="font-size:.72rem;color:#6b7590;margin-bottom:2px;">Signed in as</div>
             <div style="font-weight:700;font-size:.9rem;">{st.session_state.user_name}</div>
-            <div style="font-size:.65rem;color:#a78bfa;text-transform:uppercase;letter-spacing:.5px;
+            <div style="font-size:.65rem;color:#7b8cde;text-transform:uppercase;letter-spacing:.5px;
               margin-top:2px;">{st.session_state.user_role}</div></div>""",unsafe_allow_html=True)
         nav=[("🏠","Dashboard","dashboard"),("🧠","Predict","predict"),
              ("🎮","Wellness","wellness"),("📊","Analytics","analytics")]
@@ -268,10 +268,10 @@ def sidebar():
             if st.button(f"{icon}  {label}",key=f"nav_{pid}",use_container_width=True):
                 st.session_state.page=pid; st.rerun()
         st.markdown("<br>",unsafe_allow_html=True)
-        st.markdown("""<div style="background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.2);
+        st.markdown("""<div style="background:rgba(60,100,160,.07);border:1px solid rgba(60,100,160,.18);
           border-radius:12px;padding:12px 14px;margin-bottom:12px;">
-          <div style="font-size:.7rem;font-weight:700;color:#60a5fa;margin-bottom:4px;">🌐 FEDERATED LEARNING</div>
-          <div style="font-size:.65rem;color:#475569;line-height:1.5;">
+          <div style="font-size:.7rem;font-weight:700;color:#4f7ab3;margin-bottom:4px;">🌐 FEDERATED LEARNING</div>
+          <div style="font-size:.65rem;color:#5a6478;line-height:1.5;">
             Cross-institutional privacy-preserving training — coming soon via Flower</div></div>""",
             unsafe_allow_html=True)
         if st.button("🚪  Sign Out",use_container_width=True,key="signout"):
@@ -286,10 +286,10 @@ def page_dashboard():
     st.markdown('<div class="pp-subtitle">Here\'s your wellness snapshot for this week</div>',unsafe_allow_html=True)
     k1,k2,k3,k4=st.columns(4)
     for col,(color,icon,val,label,sub) in zip([k1,k2,k3,k4],[
-        ("#fbbf24","⚡","52%","Burnout Risk","↑ from 41% last week"),
-        ("#a78bfa","🌟","61","Wellness Score","out of 100"),
-        ("#34d399","🔥","4 days","Focus Streak","personal best: 7"),
-        ("#f87171","😴","5.5 h","Avg Sleep","↓ below 7 h optimal"),
+        ("#b07d2a","⚡","52%","Burnout Risk","↑ from 41% last week"),
+        ("#7b8cde","🌟","61","Wellness Score","out of 100"),
+        ("#3d8c6e","🔥","4 days","Focus Streak","personal best: 7"),
+        ("#9b4545","😴","5.5 h","Avg Sleep","↓ below 7 h optimal"),
     ]):
         with col: st.markdown(f'''<div class="pp-kpi" style="border-color:{color}30;">
           <div style="font-size:1.6rem;margin-bottom:6px;">{icon}</div>
@@ -302,7 +302,7 @@ def page_dashboard():
         st.markdown('<div class="pp-card">',unsafe_allow_html=True)
         st.markdown("**📉 Burnout Risk Over Time**")
         fig=go.Figure(go.Scatter(x=trend["week"],y=trend["risk"],fill="tozeroy",mode="lines",
-            line=dict(color="#f87171",width=2),fillcolor="rgba(248,113,113,0.12)"))
+            line=dict(color="#9b4545",width=2),fillcolor="rgba(140,60,60,0.1)"))
         fig.update_layout(height=200,showlegend=False,**_CL)
         st.plotly_chart(fig,use_container_width=True,config={"displayModeBar":False})
         st.markdown('</div>',unsafe_allow_html=True)
@@ -311,9 +311,9 @@ def page_dashboard():
         st.markdown("**😴 Sleep & Focus Trends**")
         fig2=go.Figure()
         fig2.add_trace(go.Scatter(x=trend["week"],y=trend["sleep"],mode="lines+markers",
-            line=dict(color="#60a5fa",width=2),marker=dict(size=5),name="Sleep (h)"))
+            line=dict(color="#4f7ab3",width=2),marker=dict(size=5),name="Sleep (h)"))
         fig2.add_trace(go.Scatter(x=trend["week"],y=[v/10 for v in trend["focus"]],mode="lines+markers",
-            line=dict(color="#34d399",width=2),marker=dict(size=5),name="Focus (×10)"))
+            line=dict(color="#3d8c6e",width=2),marker=dict(size=5),name="Focus (×10)"))
         fig2.update_layout(height=200,**_CL)
         st.plotly_chart(fig2,use_container_width=True,config={"displayModeBar":False})
         st.markdown('</div>',unsafe_allow_html=True)
@@ -321,11 +321,11 @@ def page_dashboard():
     st.markdown("**💡 Personalised Recommendations**")
     recs=get_recs(0.52)
     for col,r in zip(st.columns(len(recs)),recs):
-        with col: st.markdown(f'''<div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);
+        with col: st.markdown(f'''<div style="background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.055);
           border-radius:14px;padding:14px;text-align:center;">
           <div style="font-size:1.8rem;margin-bottom:8px;">{r["icon"]}</div>
           <div style="font-size:.78rem;font-weight:700;margin-bottom:4px;">{r["title"]}</div>
-          <div style="font-size:.7rem;color:#475569;line-height:1.5;">{r["desc"]}</div></div>''',unsafe_allow_html=True)
+          <div style="font-size:.7rem;color:#5a6478;line-height:1.5;">{r["desc"]}</div></div>''',unsafe_allow_html=True)
     st.markdown('</div>',unsafe_allow_html=True)
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -379,7 +379,7 @@ def page_predict():
         st.markdown("<br>",unsafe_allow_html=True)
         res=st.session_state.predict_result
         if not res:
-            st.markdown("""<div style="text-align:center;padding:60px 0;color:#475569;">
+            st.markdown("""<div style="text-align:center;padding:60px 0;color:#5a6478;">
               <div style="font-size:3rem;margin-bottom:12px;">🔮</div>
               <div style="font-size:1rem;font-weight:600;">No prediction yet</div>
               <div style="font-size:.8rem;margin-top:6px;">Complete Academic Inputs and Journal Entry first</div>
@@ -398,14 +398,14 @@ def page_predict():
             st.markdown("**🧬 NLP Emotional Analysis**")
             n1,n2,n3=st.columns(3)
             em=nlp.get("emotional_score",0.3); ec=rcol(em)
-            sent=nlp.get("sentiment","Neutral"); sc2="#f87171" if sent=="Negative" else "#34d399" if sent=="Positive" else "#fbbf24"
+            sent=nlp.get("sentiment","Neutral"); sc2="#9b4545" if sent=="Negative" else "#3d8c6e" if sent=="Positive" else "#b07d2a"
             sw=nlp.get("stress_words",[])
             with n1: st.markdown(f'<div class="pp-kpi"><div class="pp-kpi-value" style="color:{ec};">{round(em*100)}%</div><div class="pp-kpi-label">Emotional Stress</div></div>',unsafe_allow_html=True)
             with n2: st.markdown(f'<div class="pp-kpi"><div class="pp-kpi-value" style="color:{sc2};font-size:1.3rem;">{sent}</div><div class="pp-kpi-label">Sentiment</div></div>',unsafe_allow_html=True)
-            with n3: st.markdown(f'<div class="pp-kpi"><div class="pp-kpi-value" style="color:#f472b6;">{len(sw)}</div><div class="pp-kpi-label">Stress Signals</div></div>',unsafe_allow_html=True)
+            with n3: st.markdown(f'<div class="pp-kpi"><div class="pp-kpi-value" style="color:#8c607e;">{len(sw)}</div><div class="pp-kpi-label">Stress Signals</div></div>',unsafe_allow_html=True)
             if sw:
                 st.markdown("<br>**Detected stress words:**",unsafe_allow_html=True)
-                st.markdown(" ".join([f'<span style="background:rgba(248,113,113,.15);color:#f87171;border:1px solid rgba(248,113,113,.3);padding:3px 10px;border-radius:12px;font-size:.72rem;font-weight:700;margin-right:4px;">{w}</span>' for w in sw]),unsafe_allow_html=True)
+                st.markdown(" ".join([f'<span style="background:rgba(140,60,60,.12);color:#9b4545;border:1px solid rgba(140,60,60,.25);padding:3px 10px;border-radius:12px;font-size:.72rem;font-weight:700;margin-right:4px;">{w}</span>' for w in sw]),unsafe_allow_html=True)
             st.markdown('</div>',unsafe_allow_html=True)
         c3,c4=st.columns(2)
         with c3:
@@ -413,11 +413,11 @@ def page_predict():
             st.markdown("**🔍 Explainable AI – Feature Impact**")
             fi_df=pd.DataFrame(res["fi"]).sort_values("importance")
             fb=go.Figure(go.Bar(x=fi_df["importance"],y=fi_df["feature"],orientation="h",
-                marker=dict(color=fi_df["importance"],colorscale=[[0,"#7c3aed"],[0.5,"#ec4899"],[1,"#f87171"]]),
-                text=[f"{v:.0%}" for v in fi_df["importance"]],textposition="outside",textfont=dict(color="#94a3b8",size=10)))
+                marker=dict(color=fi_df["importance"],colorscale=[[0,"#3b4fd8"],[0.5,"#7a4f72"],[1,"#9b4545"]]),
+                text=[f"{v:.0%}" for v in fi_df["importance"]],textposition="outside",textfont=dict(color="#8a9ab5",size=10)))
             fb.update_layout(height=220,margin=dict(l=0,r=60,t=10,b=0),paper_bgcolor="rgba(0,0,0,0)",
                 plot_bgcolor="rgba(0,0,0,0)",xaxis=dict(showgrid=False,showticklabels=False),
-                yaxis=dict(showgrid=False,color="#94a3b8",tickfont=dict(size=11)),
+                yaxis=dict(showgrid=False,color="#8a9ab5",tickfont=dict(size=11)),
                 font=dict(family="Outfit"),showlegend=False)
             st.plotly_chart(fb,use_container_width=True,config={"displayModeBar":False})
             st.markdown('</div>',unsafe_allow_html=True)
@@ -428,23 +428,23 @@ def page_predict():
             rv=[inp.get("attendance",80),inp.get("gpa",3.2)*25,min(100,inp.get("study",18)*1.5),inp.get("engagement",60),max(0,100-inp.get("delays",2)*10)]
             cats=["Attendance","GPA","Study Hours","Engagement","Punctuality"]
             fr=go.Figure(go.Scatterpolar(r=rv+[rv[0]],theta=cats+[cats[0]],fill="toself",
-                fillcolor="rgba(167,139,250,0.15)",line=dict(color="#a78bfa",width=2)))
+                fillcolor="rgba(100,116,200,0.14)",line=dict(color="#7b8cde",width=2)))
             fr.update_layout(height=220,margin=dict(l=20,r=20,t=20,b=20),paper_bgcolor="rgba(0,0,0,0)",
                 plot_bgcolor="rgba(0,0,0,0)",
                 polar=dict(bgcolor="rgba(0,0,0,0)",
-                    radialaxis=dict(visible=True,range=[0,100],color="#334155",gridcolor="rgba(255,255,255,0.07)"),
-                    angularaxis=dict(color="#64748b",gridcolor="rgba(255,255,255,0.07)")),
+                    radialaxis=dict(visible=True,range=[0,100],color="#3d4a60",gridcolor="rgba(255,255,255,0.055)"),
+                    angularaxis=dict(color="#6b7590",gridcolor="rgba(255,255,255,0.055)")),
                 font=dict(family="Outfit"),showlegend=False)
             st.plotly_chart(fr,use_container_width=True,config={"displayModeBar":False})
             st.markdown('</div>',unsafe_allow_html=True)
         st.markdown('<div class="pp-card">',unsafe_allow_html=True)
         st.markdown("**💡 Personalised Recommendations**")
         for col,r in zip(st.columns(len(res["recs"])),res["recs"]):
-            with col: st.markdown(f'''<div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);
+            with col: st.markdown(f'''<div style="background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.055);
               border-radius:14px;padding:14px;text-align:center;">
               <div style="font-size:1.8rem;margin-bottom:8px;">{r["icon"]}</div>
               <div style="font-size:.78rem;font-weight:700;margin-bottom:4px;">{r["title"]}</div>
-              <div style="font-size:.7rem;color:#475569;line-height:1.5;">{r["desc"]}</div></div>''',unsafe_allow_html=True)
+              <div style="font-size:.7rem;color:#5a6478;line-height:1.5;">{r["desc"]}</div></div>''',unsafe_allow_html=True)
         st.markdown('</div>',unsafe_allow_html=True)
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -462,9 +462,9 @@ def page_wellness():
             st.markdown("### 🌬️ Box Breathing 4-4-4-4")
             st.caption("Science-backed technique used by therapists and Navy SEALs to calm the nervous system.")
             ph=st.session_state.breath_phase
-            COLS={"inhale":"#60a5fa","hold1":"#a78bfa","exhale":"#34d399","hold2":"#f472b6","idle":"#64748b"}
+            COLS={"inhale":"#4f7ab3","hold1":"#7b8cde","exhale":"#3d8c6e","hold2":"#8c607e","idle":"#6b7590"}
             LBLS={"inhale":"Breathe In 🌬️","hold1":"Hold 💙","exhale":"Breathe Out ✨","hold2":"Hold 🌙","idle":"Ready ✦"}
-            c=COLS.get(ph,"#64748b"); sz=180 if ph in ["inhale","hold1"] else 120
+            c=COLS.get(ph,"#6b7590"); sz=180 if ph in ["inhale","hold1"] else 120
             st.markdown(f'''<div style="display:flex;justify-content:center;margin:24px 0;">
               <div style="width:{sz}px;height:{sz}px;border-radius:50%;background:radial-gradient(circle at 35% 35%,{c}40,{c}15);
                 border:3px solid {c}80;display:flex;align-items:center;justify-content:center;transition:all 1.5s;
@@ -483,7 +483,7 @@ def page_wellness():
                 nxt=PSQ[(PSQ.index(ph)+1)%4]
                 if st.button(f"Next → {LBLS[nxt]}",use_container_width=True,key="bn"):
                     st.session_state.breath_phase=nxt; st.rerun()
-            st.markdown(f'<div style="margin-top:12px;font-size:.8rem;color:#64748b;">Cycles: <strong style="color:#a78bfa;">{st.session_state.breath_cycles}</strong></div>',unsafe_allow_html=True)
+            st.markdown(f'<div style="margin-top:12px;font-size:.8rem;color:#6b7590;">Cycles: <strong style="color:#7b8cde;">{st.session_state.breath_cycles}</strong></div>',unsafe_allow_html=True)
             st.markdown('</div>',unsafe_allow_html=True)
     with tm:
         st.markdown("<br>",unsafe_allow_html=True)
@@ -503,11 +503,11 @@ def page_wellness():
             st.markdown("**📈 Mood Trend**")
             ml_df=pd.DataFrame(st.session_state.mood_log[-7:])
             fm=go.Figure(go.Scatter(x=ml_df["day"],y=ml_df["v"],fill="tozeroy",mode="lines+markers",
-                line=dict(color="#a78bfa",width=2),marker=dict(size=7),fillcolor="rgba(167,139,250,0.1)"))
+                line=dict(color="#7b8cde",width=2),marker=dict(size=7),fillcolor="rgba(167,139,250,0.1)"))
             fm.update_layout(height=180,margin=dict(l=0,r=0,t=10,b=0),paper_bgcolor="rgba(0,0,0,0)",
                 plot_bgcolor="rgba(0,0,0,0)",showlegend=False,font=dict(family="Outfit"),
-                xaxis=dict(showgrid=False,color="#475569"),
-                yaxis=dict(range=[0,5.5],showgrid=True,gridcolor="rgba(255,255,255,0.05)",color="#475569",
+                xaxis=dict(showgrid=False,color="#5a6478"),
+                yaxis=dict(range=[0,5.5],showgrid=True,gridcolor="rgba(255,255,255,0.05)",color="#5a6478",
                     tickvals=[1,2,3,4,5],ticktext=["😰","😟","😐","🙂","😊"]))
             st.plotly_chart(fm,use_container_width=True,config={"displayModeBar":False})
             st.markdown('</div>',unsafe_allow_html=True)
@@ -519,10 +519,10 @@ def page_wellness():
         with gl:
             st.markdown('<div class="pp-card">',unsafe_allow_html=True)
             st.markdown("**🌸 Today's Gratitude**")
-            st.markdown(f'''<div style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.2);
+            st.markdown(f'''<div style="background:rgba(100,116,200,.07);border:1px solid rgba(100,116,200,.18);
               border-radius:12px;padding:12px 16px;margin-bottom:14px;">
-              <div style="font-size:.7rem;color:#a78bfa;font-weight:700;letter-spacing:1px;margin-bottom:4px;">✨ TODAY'S PROMPT</div>
-              <div style="font-size:.85rem;color:#e2e8f0;">{PROMPTS[st.session_state.prompt_idx]}</div></div>''',unsafe_allow_html=True)
+              <div style="font-size:.7rem;color:#7b8cde;font-weight:700;letter-spacing:1px;margin-bottom:4px;">✨ TODAY'S PROMPT</div>
+              <div style="font-size:.85rem;color:#ccd4e0;">{PROMPTS[st.session_state.prompt_idx]}</div></div>''',unsafe_allow_html=True)
             gv=st.text_area("Entry",height=90,label_visibility="collapsed",placeholder="I'm grateful for…",key="gv")
             b1g,b2g=st.columns(2)
             with b1g:
@@ -539,7 +539,7 @@ def page_wellness():
             st.markdown('<div class="pp-card">',unsafe_allow_html=True)
             st.markdown("**📖 Your Entries**")
             for e in st.session_state.gratitude[:6]:
-                st.markdown(f'<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 14px;margin-bottom:8px;border:1px solid rgba(255,255,255,.06);font-size:.8rem;color:#94a3b8;display:flex;gap:10px;align-items:flex-start;"><span style="font-size:1rem;flex:0 0 auto;">🌸</span><span style="line-height:1.5;">{e}</span></div>',unsafe_allow_html=True)
+                st.markdown(f'<div style="background:rgba(255,255,255,.035);border-radius:10px;padding:10px 14px;margin-bottom:8px;border:1px solid rgba(255,255,255,.06);font-size:.8rem;color:#8a9ab5;display:flex;gap:10px;align-items:flex-start;"><span style="font-size:1rem;flex:0 0 auto;">🌸</span><span style="line-height:1.5;">{e}</span></div>',unsafe_allow_html=True)
             st.markdown('</div>',unsafe_allow_html=True)
     with tq:
         st.markdown("<br>",unsafe_allow_html=True)
@@ -564,7 +564,7 @@ def page_wellness():
               padding:20px;text-align:center;margin-top:16px;">
               <div style="font-size:2.5rem;font-weight:900;color:{c};">{tot}/20</div>
               <div style="font-size:1rem;font-weight:700;color:{c};margin-top:4px;">{lb}</div>
-              <div style="font-size:.8rem;color:#64748b;margin-top:8px;">{mg}</div></div>''',unsafe_allow_html=True)
+              <div style="font-size:.8rem;color:#6b7590;margin-top:8px;">{mg}</div></div>''',unsafe_allow_html=True)
         st.markdown('</div>',unsafe_allow_html=True)
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -579,25 +579,25 @@ def page_analytics():
         st.markdown('<div class="pp-card">',unsafe_allow_html=True)
         st.markdown("**📚 GPA Trend**")
         f=go.Figure(go.Scatter(x=trend["week"],y=trend["gpa"],mode="lines+markers",
-            line=dict(color="#60a5fa",width=2),marker=dict(size=7),fill="tozeroy",fillcolor="rgba(96,165,250,0.1)"))
+            line=dict(color="#4f7ab3",width=2),marker=dict(size=7),fill="tozeroy",fillcolor="rgba(60,100,160,0.09)"))
         f.update_layout(height=200,showlegend=False,paper_bgcolor="rgba(0,0,0,0)",
             plot_bgcolor="rgba(0,0,0,0)",margin=dict(l=0,r=0,t=10,b=0),font=dict(family="Outfit"),
-            xaxis=dict(showgrid=False,color="#475569"),yaxis=dict(range=[2,4],showgrid=True,gridcolor="rgba(255,255,255,0.05)",color="#475569"))
+            xaxis=dict(showgrid=False,color="#5a6478"),yaxis=dict(range=[2,4],showgrid=True,gridcolor="rgba(255,255,255,0.05)",color="#5a6478"))
         st.plotly_chart(f,use_container_width=True,config={"displayModeBar":False})
         st.markdown('</div>',unsafe_allow_html=True)
     with cr:
         st.markdown('<div class="pp-card">',unsafe_allow_html=True)
         st.markdown("**💭 Emotional Stress Trend**")
         f2=go.Figure(go.Scatter(x=trend["week"],y=trend["emotional"],mode="lines+markers",
-            line=dict(color="#f472b6",width=2),marker=dict(size=7),fill="tozeroy",fillcolor="rgba(244,114,182,0.1)"))
+            line=dict(color="#8c607e",width=2),marker=dict(size=7),fill="tozeroy",fillcolor="rgba(140,96,126,0.1)"))
         f2.update_layout(height=200,showlegend=False,**_CL)
         st.plotly_chart(f2,use_container_width=True,config={"displayModeBar":False})
         st.markdown('</div>',unsafe_allow_html=True)
     st.markdown('<div class="pp-card">',unsafe_allow_html=True)
     st.markdown("**📈 Multi-Metric Overview**")
     f3=go.Figure()
-    for cn,col,nm,m in [("risk","#f87171","Burnout Risk",1),("gpa","#60a5fa","GPA ×25",25),
-                         ("sleep","#34d399","Sleep ×10",10),("focus","#fbbf24","Focus %",1)]:
+    for cn,col,nm,m in [("risk","#9b4545","Burnout Risk",1),("gpa","#4f7ab3","GPA ×25",25),
+                         ("sleep","#3d8c6e","Sleep ×10",10),("focus","#b07d2a","Focus %",1)]:
         f3.add_trace(go.Scatter(x=trend["week"],y=[v*m for v in trend[cn]],mode="lines+markers",
             line=dict(color=col,width=2),marker=dict(size=5),name=nm))
     f3.update_layout(height=280,**_CL)
@@ -612,8 +612,8 @@ def page_admin():
     st.markdown('<div class="pp-subtitle">Anonymised burnout analytics across 312 students</div>',unsafe_allow_html=True)
     ad=admin_data()
     a1,a2,a3,a4=st.columns(4)
-    for col,(val,lb,c) in zip([a1,a2,a3,a4],[("312","Total Students","#60a5fa"),
-        ("17%","High Risk","#f87171"),("35%","Moderate Risk","#fbbf24"),("48%","Low Risk","#34d399")]):
+    for col,(val,lb,c) in zip([a1,a2,a3,a4],[("312","Total Students","#4f7ab3"),
+        ("17%","High Risk","#9b4545"),("35%","Moderate Risk","#b07d2a"),("48%","Low Risk","#3d8c6e")]):
         with col: st.markdown(f'<div class="pp-kpi"><div class="pp-kpi-value" style="color:{c};">{val}</div><div class="pp-kpi-label">{lb}</div></div>',unsafe_allow_html=True)
     st.markdown("<br>",unsafe_allow_html=True)
     cl,cr=st.columns(2)
@@ -621,17 +621,17 @@ def page_admin():
         st.markdown('<div class="pp-card">',unsafe_allow_html=True)
         st.markdown("**📊 Risk Distribution**")
         fp=go.Figure(go.Pie(labels=ad["dist"]["name"],values=ad["dist"]["value"],hole=0.5,
-            marker=dict(colors=["#34d399","#fbbf24","#f87171"]),textfont=dict(family="Outfit",size=12)))
+            marker=dict(colors=["#3d8c6e","#b07d2a","#9b4545"]),textfont=dict(family="Outfit",size=12)))
         fp.update_layout(height=240,margin=dict(l=0,r=0,t=10,b=0),paper_bgcolor="rgba(0,0,0,0)",
             plot_bgcolor="rgba(0,0,0,0)",font=dict(family="Outfit"),
-            legend=dict(bgcolor="rgba(0,0,0,0)",font=dict(color="#94a3b8")))
+            legend=dict(bgcolor="rgba(0,0,0,0)",font=dict(color="#8a9ab5")))
         st.plotly_chart(fp,use_container_width=True,config={"displayModeBar":False})
         st.markdown('</div>',unsafe_allow_html=True)
     with cr:
         st.markdown('<div class="pp-card">',unsafe_allow_html=True)
         st.markdown("**📈 Department Trends**")
         fl=go.Figure()
-        pal=["#a78bfa","#34d399","#f87171","#fbbf24"]
+        pal=["#7b8cde","#3d8c6e","#9b4545","#b07d2a"]
         for i,(dept,vals) in enumerate(ad["trends"].items()):
             fl.add_trace(go.Scatter(x=[f"Wk{j+1}" for j in range(len(vals))],y=vals,
                 mode="lines+markers",name=dept,line=dict(color=pal[i%4],width=2),marker=dict(size=5)))
@@ -642,24 +642,24 @@ def page_admin():
     st.markdown("**🔥 Stress Heatmap — Department × Week**")
     hdf=ad["heat"]
     fh=go.Figure(go.Heatmap(z=hdf.values,x=list(hdf.columns),y=list(hdf.index),
-        colorscale=[[0,"rgba(52,211,153,0.8)"],[0.5,"rgba(251,191,36,0.8)"],[1,"rgba(248,113,113,0.9)"]],
+        colorscale=[[0,"rgba(50,130,100,0.75)"],[0.5,"rgba(160,110,30,0.75)"],[1,"rgba(140,60,60,0.85)"]],
         text=[[f"{v}%" for v in row] for row in hdf.values],texttemplate="%{text}",
         textfont=dict(family="Outfit",size=12,color="white"),showscale=True))
     fh.update_layout(height=280,margin=dict(l=0,r=0,t=10,b=0),paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="rgba(0,0,0,0)",xaxis=dict(color="#475569"),yaxis=dict(color="#94a3b8"),font=dict(family="Outfit"))
+        plot_bgcolor="rgba(0,0,0,0)",xaxis=dict(color="#5a6478"),yaxis=dict(color="#8a9ab5"),font=dict(family="Outfit"))
     st.plotly_chart(fh,use_container_width=True,config={"displayModeBar":False})
     st.markdown('</div>',unsafe_allow_html=True)
-    st.markdown('''<div class="pp-card" style="border-color:rgba(96,165,250,.3);background:rgba(96,165,250,.05);">
+    st.markdown('''<div class="pp-card" style="border-color:rgba(60,100,160,.25);background:rgba(96,165,250,.05);">
       <div style="display:flex;gap:16px;align-items:flex-start;">
         <div style="font-size:2.5rem;">🌐</div>
         <div>
-          <div style="font-size:1rem;font-weight:800;color:#60a5fa;margin-bottom:6px;">Federated Learning Module — Coming Soon</div>
-          <div style="font-size:.82rem;color:#475569;line-height:1.6;margin-bottom:12px;">
+          <div style="font-size:1rem;font-weight:800;color:#4f7ab3;margin-bottom:6px;">Federated Learning Module — Coming Soon</div>
+          <div style="font-size:.82rem;color:#5a6478;line-height:1.6;margin-bottom:12px;">
             Train a global burnout model across institutions without sharing raw student data.
             Only model gradients are shared — preserving full privacy via the Flower (flwr) framework.</div>
-          <span style="background:rgba(96,165,250,.2);color:#60a5fa;border:1px solid rgba(96,165,250,.4);padding:3px 12px;border-radius:12px;font-size:.72rem;font-weight:700;margin-right:8px;">Privacy-Preserving</span>
-          <span style="background:rgba(167,139,250,.2);color:#a78bfa;border:1px solid rgba(167,139,250,.4);padding:3px 12px;border-radius:12px;font-size:.72rem;font-weight:700;margin-right:8px;">Differential Privacy</span>
-          <span style="background:rgba(52,211,153,.2);color:#34d399;border:1px solid rgba(52,211,153,.4);padding:3px 12px;border-radius:12px;font-size:.72rem;font-weight:700;">Multi-Institutional</span>
+          <span style="background:rgba(60,100,160,.18);color:#4f7ab3;border:1px solid rgba(60,100,160,.35);padding:3px 12px;border-radius:12px;font-size:.72rem;font-weight:700;margin-right:8px;">Privacy-Preserving</span>
+          <span style="background:rgba(100,116,200,.18);color:#7b8cde;border:1px solid rgba(100,116,200,.35);padding:3px 12px;border-radius:12px;font-size:.72rem;font-weight:700;margin-right:8px;">Differential Privacy</span>
+          <span style="background:rgba(50,130,100,.16);color:#3d8c6e;border:1px solid rgba(50,130,100,.32);padding:3px 12px;border-radius:12px;font-size:.72rem;font-weight:700;">Multi-Institutional</span>
         </div></div></div>''',unsafe_allow_html=True)
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -673,9 +673,9 @@ def main():
      "analytics":page_analytics,"admin":page_admin}.get(st.session_state.page,page_dashboard)()
     st.markdown("<br><br>",unsafe_allow_html=True)
     st.markdown('''<div style="text-align:center;padding:20px 0;
-      border-top:1px solid rgba(167,139,250,.1);font-size:.72rem;color:#334155;margin-top:40px;">
+      border-top:1px solid rgba(100,116,200,.1);font-size:.72rem;color:#3d4a60;margin-top:40px;">
       🧠 PredictPulse · Built with ❤️ for student wellbeing ·
-      <span style="color:#475569;">If you're struggling — please reach out to your counselor 💙</span>
+      <span style="color:#5a6478;">If you're struggling — please reach out to your counselor 💙</span>
     </div>''',unsafe_allow_html=True)
 
 if __name__=="__main__":
