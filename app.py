@@ -19,7 +19,7 @@ from datetime import datetime, timedelta
 import random
 
 # ── Internal modules ───────────────────────────────────────────
-from ml.model      import predict_burnout_score, get_feature_importance
+from model         import predict_burnout_score
 from ml.nlp        import analyze_journal_entry
 from utils.recs    import get_recommendations
 from utils.data    import get_mock_trend, get_admin_data
